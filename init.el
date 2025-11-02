@@ -14,10 +14,6 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-;; No littering
-(use-package no-littering)
-(no-littering-theme-backups)
-
 ;; Theme
 (load-theme 'modus-vivendi-tinted t)
 
@@ -49,3 +45,19 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
+
+;; No littering
+(use-package no-littering)
+(no-littering-theme-backups)
+
+;; Magit
+(use-package magit)
+
+;; Custom function definitions
+(defun my/edit-config-file ()
+  "Open main Emacs configuration file"
+  (interactive)
+  (find-file user-init-file))
+
+;; Custom key bindings
+(global-set-key (kbd "C-c e i") #'my/edit-config-file)
