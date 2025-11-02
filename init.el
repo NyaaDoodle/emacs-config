@@ -16,6 +16,7 @@
 
 ;; No littering
 (use-package no-littering)
+(no-littering-theme-backups)
 
 ;; Theme
 (load-theme 'modus-vivendi-tinted t)
@@ -43,3 +44,8 @@
 
 ;; Restore last cursor location on file
 (save-place-mode 1)
+
+;; Tab and indentation configuration
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq c-basic-offset 4)
