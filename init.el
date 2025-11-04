@@ -41,6 +41,9 @@
 ;; Restore last cursor location on file
 (save-place-mode 1)
 
+;; Which-key
+(which-key-mode 1)
+
 ;; Tab and indentation configuration
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -60,4 +63,5 @@
   (find-file user-init-file))
 
 ;; Custom key bindings
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-c e i") #'my/edit-config-file)
