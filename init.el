@@ -34,10 +34,6 @@
 ;; Recent files
 (recentf-mode 1)
 
-;; Minibuffer history
-(setq history-length 25)
-(savehist-mode 1)
-
 ;; Restore last cursor location on file
 (save-place-mode 1)
 
@@ -55,6 +51,51 @@
 
 ;; Magit
 (use-package magit)
+
+;; Vertico
+(use-package vertico
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode))
+
+;; Emacs minibuffer configurations for Vertico
+(use-package emacs
+  :custom
+  ;; Enable context menu. `vertico-multiform-mode' adds a menu in the minibuffer
+  ;; to switch display modes.
+  (context-menu-mode t)
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (enable-recursive-minibuffers t)
+  ;; Hide commands in M-x which do not work in the current mode.  Vertico
+  ;; commands are hidden in normal buffers. This setting is useful beyond
+  ;; Vertico.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
+
+;; Minibuffer history
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; Orderless
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defaults nil) ;; Disable defaults, use our settings
+  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
+
+;; Marginalia
+(use-package marginalia
+  :after vertico
+  :ensure t
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
 
 ;; Custom function definitions
 (defun my/edit-config-file ()
