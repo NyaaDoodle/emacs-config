@@ -18,7 +18,7 @@
 (load-theme 'modus-vivendi-tinted t)
 
 ;; Font
-(set-face-attribute 'default nil :family "Hack" :height 200)
+(set-face-attribute 'default nil :family "JetBrains Mono" :height 200)
 
 ;; Remove UI elements
 (menu-bar-mode -1)
@@ -33,9 +33,6 @@
 
 ;; Recent files
 (recentf-mode 1)
-
-;; Restore last cursor location on file
-(save-place-mode 1)
 
 ;; Which-key
 (which-key-mode 1)
